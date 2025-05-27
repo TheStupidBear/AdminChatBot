@@ -7,6 +7,7 @@ import time
 
 router = Router()
 
+
 #приветствие
 @router.chat_member(ChatMemberUpdatedFilter((IS_NOT_MEMBER >> IS_MEMBER)))
 async def on_user_join(event: ChatMemberUpdated):
@@ -52,7 +53,8 @@ async def check_text(message: types.Message):
 
 #проверка на плохое слово
 def check_bad_word(message):
-    if message.text.lower() in bad_words:
+    list_text = message.text.lower().split() #разделяем строку на список слов
+    if len(list(set(list_text) & set(bad_words))) > 0: #список совпадений
         return True
     else:
         return False
