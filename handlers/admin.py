@@ -12,7 +12,7 @@ router = Router()
 class IsAdminFilter(BaseFilter):
     async def __call__(self, message: Message) -> bool: #возвращает булево значение
         user_id = message.from_user.id
-        chat_id = message.chat.id
+        chat_id = -1002622439216
         chat_member = await message.bot.get_chat_member(user_id=user_id, chat_id=chat_id)
         # проверка на админа или создателя группы
         if chat_member.status in ['creator', 'administrator']:  # если это админ или создатель группы
