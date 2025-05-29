@@ -35,6 +35,7 @@ async def check_text(message: types.Message):
             if check_bad_dict(message) == False:  # если одно нарушение
                 await message.answer(
                     f"{user_name}, это ваше 1-е нарушение. После 2-го нарушения вы не сможете писать 1 час")
+                await message.answer("Сообщение удалено")
                 # удаляем сообщение
                 await message.delete()
             else:  # мьют пользователя (если уже было первое нарушение)
@@ -43,6 +44,7 @@ async def check_text(message: types.Message):
                                                until_date=time.time() + time_mute,
                                                permissions=types.ChatPermissions(can_send_messages=False))
                 await message.answer(f"{user_name}, вы заблокированы на {time_mute} секунд")
+                await message.answer("Сообщение удалено")
                 # удаляем сообщение
                 await message.delete()
         else: #если нет плохого слова
